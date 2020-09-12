@@ -6,11 +6,9 @@
 
 ## Todo JSON format
 
-The todo JSON format is below. It consists of a very basic concept of `Todo Items`. 
+The todo JSON format is below. It consists of a very basic concept of `Todo Items`. The key values and their types are given. 
 
-These are then stored in an array. Which can then be exported and saved or imported and loaded into suru.
-
-```json
+```
 [
   {
     id: string
@@ -23,6 +21,33 @@ These are then stored in an array. Which can then be exported and saved or impor
 ...
 ]
 ```
+
+Example
+
+```json
+[
+  {
+    "id": "ltb40kc096l",
+    "description": "Code",
+    "isDone": true,
+    "completedDate": 1599951673580
+  },
+  {
+    "id": "c222u92a733",
+    "description": "Exercise",
+    "isDone": false
+  }
+]
+```
+
+## Future enhancements
+* [ ] Clear list
+* [ ] Due dates
+* [ ] Tags
+* [ ] Search via description or tags
+* [ ] Archive todos
+* [ ] Simple user login to retrieve from cloud
+* [ ] User sync to cloud
 
 ## Scripts
 
