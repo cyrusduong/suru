@@ -8,8 +8,17 @@
   color: white;
 }
 
+.redo-item,
 .todo-item {
   text-align: left;
+}
+
+.redo-item > div > button {
+  display: none;
+}
+
+.redo-item:hover > div > button {
+  display: block;
 }
 
 .todo-bar {
@@ -27,7 +36,7 @@
 }
 
 .done-desc {
-  text-decoration: line-through;
+  color: darkgray;
 }
 
 .todo-done-button {
@@ -44,11 +53,6 @@
 .due-date {
   font-size: small;
   color: darkgray;
-}
-
-.current-date {
-  font-weight: thin;
-  font-family: 'Fira';
 }
 
 .done-label {

@@ -21,8 +21,8 @@ const ListItem = ({ item, handleActionClicked }: ListItemProps) => {
   } = item;
 
   return (
-    <ListGroupItem key={id} className="todo-item">
-      <div className="flex">
+    <ListGroupItem key={id} className={isDone ? "redo-item" : "todo-item"} >
+      <div className="flex todo-item-primary">
         {!isDone ? <p className="todo-desc margin-0">{description}</p>
           : <p className="done-desc margin-0">{description}</p>}
         <Button
@@ -33,7 +33,7 @@ const ListItem = ({ item, handleActionClicked }: ListItemProps) => {
           {!isDone ? "Done" : "Redo"}
         </Button>
       </div>
-      {isDone ? <div className="due-date">Compelted: {moment(completedDate).format("MMM Do YYYY")}</div>
+      {isDone ? <div className="due-date">Completed: {moment(completedDate).format("MMM Do, YYYY - LTS")}</div>
         : dueDate ? <div className="due-date">Due: {moment(dueDate).format("MMM Do YYYY")}</div>
           : null}
     </ListGroupItem>

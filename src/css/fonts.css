@@ -8,3 +8,14 @@
   src: url('../fonts/KaushanScript-Regular.otf');
 }
   
+.thin {
+  font-weight: thin;
+}
+
+.fira {
+  font-family: 'Fira';
+}
+
+.kaushan {
+  font-family: 'Kaushan';
+}
