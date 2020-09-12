@@ -24,9 +24,14 @@ const newTodoItem = (description: string, dueDate?: number, tags?: string[]): To
   }
 }
 
-const List = () => {
-  const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
-  const [doneItems, setDoneItems] = useState<TodoItem[]>([]);
+interface ListProps {
+  todoItems: TodoItem[],
+  setTodoItems: Function,
+  doneItems: TodoItem[],
+  setDoneItems: Function
+}
+
+const List = ({ todoItems, setTodoItems, doneItems, setDoneItems }: ListProps) => {
   const [todoValue, setTodoValue] = useState<string>('');
 
   const handleAddTodoClicked = () => {
@@ -68,39 +73,43 @@ const List = () => {
     setDoneItems(doneItems.filter(item => item.id !== id))
   }
 
-  return (<div className="main flex-container-center">
-    <div className="todo-bar width-90">
-      <InputGroup>
-        <FormControl
-          placeholder="What you want to do?"
-          className="todo-input"
-          onKeyPress={(e: React.KeyboardEvent) => handleAddNewTodo(e)}
-          onChange={(event) => setTodoValue(event.target.value)}
-          value={todoValue}
-        />
-        <InputGroup.Append>
-          <Button
-            disabled={!todoValue}
-            className="todo-done-button"
-            onClick={handleAddTodoClicked}
-          >
-            Add
-              </Button>
-        </InputGroup.Append>
-      </InputGroup>
+  const numDoneVisible = doneItems.length < 10 ? doneItems.length : 10;
+
+  return (
+    <div className="main flex-container-center">
+      <div className="todo-bar width-90">
+        <InputGroup>
+          <FormControl
+            placeholder="What you want to do?"
+            className="todo-input"
+            onKeyPress={(e: React.KeyboardEvent) => handleAddNewTodo(e)}
+            onChange={(event) => setTodoValue(event.target.value)}
+            value={todoValue}
+          />
+          <InputGroup.Append>
+            <Button
+              disabled={!todoValue}
+              className="todo-done-button"
+              onClick={handleAddTodoClicked}
+            >
+              Add
+          </Button>
+          </InputGroup.Append>
+        </InputGroup>
+      </div>
+      <ListGroup className="todo-list width-90">
+        {todoItems.map((item: TodoItem) =>
+          <ListItem item={item} handleActionClicked={handleDoneClicked} />
+        )}
+      </ListGroup>
+      {doneItems?.length > 0 ? <h1 className="done-label">Done</h1> : null}
+      <ListGroup className="done-list width-90">
+        {doneItems.slice(0, numDoneVisible).map((item: TodoItem) =>
+          <ListItem item={item} handleActionClicked={handleRedoClicked} />
+        )}
+      </ListGroup>
     </div>
-    <ListGroup className="todo-list width-90">
-      {todoItems.map((item: TodoItem) =>
-        <ListItem item={item} handleActionClicked={handleDoneClicked} />
-      )}
-    </ListGroup>
-    { doneItems?.length > 0 ? <h1 className="done-label">Done</h1> : null}
-    <ListGroup className="done-list width-90">
-      {doneItems.map((item: TodoItem) =>
-        <ListItem item={item} handleActionClicked={handleRedoClicked} />
-      )}
-    </ListGroup>
-  </div>);
+  );
 }
 
 export default List;

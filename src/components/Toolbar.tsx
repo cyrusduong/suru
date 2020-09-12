@@ -6,7 +6,12 @@ import Button from 'react-bootstrap/Button';
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 
-const Toolbar = () => {
+interface ToolbarProps {
+  onExportClicked: Function,
+  onImportClicked: Function
+}
+
+const Toolbar = ({ onExportClicked, onImportClicked }: ToolbarProps) => {
   return <div className="toolbar flex-container-right">
     {/* These will be reversed because it is flex reverse */}
     <OverlayTrigger
@@ -15,7 +20,12 @@ const Toolbar = () => {
       placement="bottom"
     >
       {({ ref, ...triggerHandler }) => (
-        <Button aria-label="export" variant="link" {...triggerHandler}>
+        <Button
+          aria-label="export"
+          variant="link"
+          onClick={() => { onExportClicked() }}
+          {...triggerHandler}
+        >
           <div ref={ref}>
             <AiOutlineDownload />
           </div>
@@ -29,7 +39,12 @@ const Toolbar = () => {
       placement="bottom"
     >
       {({ ref, ...triggerHandler }) => (
-        <Button aria-label="import" variant="link" {...triggerHandler}>
+        <Button
+          aria-label="import"
+          variant="link"
+          onClick={() => { onImportClicked() }}
+          {...triggerHandler}
+        >
           <div ref={ref}>
             <AiOutlineUpload />
           </div>

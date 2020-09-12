@@ -60,3 +60,7 @@
   color: white;
   font-family: 'Kaushan';
 }
+
+.input-file-import {
+  visibility: hidden;
+}
