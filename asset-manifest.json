@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/cyrusduong/suru/static/css/main.0630a442.chunk.css",
+    "main.js": "/cyrusduong/suru/static/js/main.8253c495.chunk.js",
+    "main.js.map": "/cyrusduong/suru/static/js/main.8253c495.chunk.js.map",
+    "runtime-main.js": "/cyrusduong/suru/static/js/runtime-main.eb64952b.js",
+    "runtime-main.js.map": "/cyrusduong/suru/static/js/runtime-main.eb64952b.js.map",
+    "static/css/2.d9ad5f5c.chunk.css": "/cyrusduong/suru/static/css/2.d9ad5f5c.chunk.css",
+    "static/js/2.fcb44275.chunk.js": "/cyrusduong/suru/static/js/2.fcb44275.chunk.js",
+    "static/js/2.fcb44275.chunk.js.map": "/cyrusduong/suru/static/js/2.fcb44275.chunk.js.map",
+    "index.html": "/cyrusduong/suru/index.html",
+    "precache-manifest.7058d1b2837ecec1010fc8dd9265bea1.js": "/cyrusduong/suru/precache-manifest.7058d1b2837ecec1010fc8dd9265bea1.js",
+    "service-worker.js": "/cyrusduong/suru/service-worker.js",
+    "static/css/2.d9ad5f5c.chunk.css.map": "/cyrusduong/suru/static/css/2.d9ad5f5c.chunk.css.map",
+    "static/css/main.0630a442.chunk.css.map": "/cyrusduong/suru/static/css/main.0630a442.chunk.css.map",
+    "static/js/2.fcb44275.chunk.js.LICENSE.txt": "/cyrusduong/suru/static/js/2.fcb44275.chunk.js.LICENSE.txt",
+    "static/media/app.css": "/cyrusduong/suru/static/media/KaushanScript-Regular.7a814d9d.otf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.eb64952b.js",
+    "static/css/2.d9ad5f5c.chunk.css",
+    "static/js/2.fcb44275.chunk.js",
+    "static/css/main.0630a442.chunk.css",
+    "static/js/main.8253c495.chunk.js"
+  ]
+}
