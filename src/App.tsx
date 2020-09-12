@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
@@ -11,6 +11,14 @@ import List, { TodoItem } from './components/List';
 const FileSaver = require('file-saver');
 
 function App() {
+  /**
+   * Prevent user from leaving the page accidentally
+   */
+  useEffect(() => {
+    const confirmExit = () => "";
+    window.onbeforeunload = confirmExit;
+  }, [])
+
   const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
   const [doneItems, setDoneItems] = useState<TodoItem[]>([]);
   const inputImportRef = useRef<any>(null);
