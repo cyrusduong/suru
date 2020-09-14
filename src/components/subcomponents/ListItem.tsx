@@ -6,6 +6,7 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 
 import { TodoItem } from '../List';
 import { FormControl } from 'react-bootstrap';
+import { cleanup } from '@testing-library/react';
 
 interface ListItemProps {
   item: TodoItem,
@@ -60,6 +61,10 @@ const ListItem = (props: ListItemProps) => {
           ref={inputRef}
           className="todo-input margin-right-1"
           onChange={(event) => handleValueChanged(event.target.value)}
+          onBlur={() => {
+            setValue(description);
+            setIsEditing(false)
+          }}
           onKeyPress={(e: React.KeyboardEvent) => {
             if(e.key === 'Enter') {
               setIsEditing(false)
