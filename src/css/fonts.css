@@ -2,12 +2,12 @@
   font-family: 'Fira';
   src: url('../fonts/FiraSans-Thin.otf');
 }
-  
+
 @font-face {
   font-family: 'Kaushan';
   src: url('../fonts/KaushanScript-Regular.otf');
 }
-  
+
 .thin {
   font-weight: thin;
 }

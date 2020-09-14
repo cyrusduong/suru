@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './app.css';
+import './App.css';
 
 import Toolbar from './components/Toolbar';
 import Header from './components/Header';

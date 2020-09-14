@@ -73,6 +73,18 @@ const List = ({ todoItems, setTodoItems, doneItems, setDoneItems }: ListProps) =
     setDoneItems(doneItems.filter(item => item.id !== id))
   }
 
+  const handleNewDescription = (id: string, value: string, isDone: boolean) => {
+    if (isDone) {
+      const modifiedItem = doneItems.filter((item: TodoItem) => item.id === id)[0];
+      modifiedItem.description = value;
+      setDoneItems([...doneItems]);
+    } else {
+      const modifiedItem = todoItems.filter((item: TodoItem) => item.id === id)[0];
+      modifiedItem.description = value;
+      setTodoItems([...todoItems]);
+    }
+  }
+
   const numDoneVisible = doneItems.length < 10 ? doneItems.length : 10;
 
   return (
@@ -99,13 +111,13 @@ const List = ({ todoItems, setTodoItems, doneItems, setDoneItems }: ListProps) =
       </div>
       <ListGroup className="todo-list width-90">
         {todoItems.map((item: TodoItem) =>
-          <ListItem item={item} handleActionClicked={handleDoneClicked} />
+          <ListItem item={item} handleActionClicked={handleDoneClicked} handleNewDescription={handleNewDescription}/>
         )}
       </ListGroup>
       {doneItems?.length > 0 ? <h1 className="done-label">Done</h1> : null}
       <ListGroup className="done-list width-90">
         {doneItems.slice(0, numDoneVisible).map((item: TodoItem) =>
-          <ListItem item={item} handleActionClicked={handleRedoClicked} />
+          <ListItem item={item} handleActionClicked={handleRedoClicked} handleNewDescription={handleNewDescription}/>
         )}
       </ListGroup>
     </div>

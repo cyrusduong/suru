@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 
 import Button from 'react-bootstrap/Button';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 
 import { TodoItem } from '../List';
+import { FormControl } from 'react-bootstrap';
 
 interface ListItemProps {
-  item: TodoItem
-  handleActionClicked: Function
+  item: TodoItem,
+  handleActionClicked: Function,
+  handleNewDescription: Function
 }
 
-const ListItem = ({ item, handleActionClicked }: ListItemProps) => {
+const ListItem = (props: ListItemProps) => {
+  const { item, handleActionClicked, handleNewDescription } = props;
+
   const {
     id,
     description,
@@ -20,17 +24,54 @@ const ListItem = ({ item, handleActionClicked }: ListItemProps) => {
     completedDate
   } = item;
 
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [value, setValue] = useState<string>(description);
+
+  const handleValueChanged = (value: string) => {
+    setValue(value);
+  }
+
+  /**
+   * Once we are done editing and value is different than the original description,
+   * update new description value to list.
+   */
+  useEffect(() =>{
+    if (!isEditing && value !== description) {
+      handleNewDescription(id, value, isDone);
+    }
+  }, [id, isEditing, handleNewDescription, value, isDone, description])
+
   return (
     <ListGroupItem key={id} className={isDone ? "redo-item" : "todo-item"} >
       <div className="flex todo-item-primary">
-        {!isDone ? <p className="todo-desc margin-0">{description}</p>
-          : <p className="done-desc margin-0">{description}</p>}
+      {isEditing ?
+        <FormControl
+          className="todo-input margin-right-1"
+          onChange={(event) => handleValueChanged(event.target.value)}
+          onKeyPress={(e: React.KeyboardEvent) => {
+            if(e.key === 'Enter') {
+              setIsEditing(false)
+            }
+          }}
+          value={value}
+        />
+      :
+        <p
+          onClick={() => setIsEditing(true)}
+          className={`${isDone ? 'done': 'todo'}-desc`}
+        >
+          {description}
+        </p>
+      }
         <Button
           variant={!isDone ? "outline-primary" : "outline-secondary"}
           className="todo-done-button"
-          onClick={() => handleActionClicked(id)}
+          onClick={
+            isEditing ? () => setIsEditing(false)
+            : () => handleActionClicked(id)
+          }
         >
-          {!isDone ? "Done" : "Redo"}
+          {!isDone || isEditing ? "Done" : "Redo"}
         </Button>
       </div>
       {isDone ? <div className="due-date">Completed: {moment(completedDate).format("MMM Do, YYYY - LTS")}</div>
