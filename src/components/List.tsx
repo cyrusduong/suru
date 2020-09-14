@@ -111,13 +111,23 @@ const List = ({ todoItems, setTodoItems, doneItems, setDoneItems }: ListProps) =
       </div>
       <ListGroup className="todo-list width-90">
         {todoItems.map((item: TodoItem) =>
-          <ListItem item={item} handleActionClicked={handleDoneClicked} handleNewDescription={handleNewDescription}/>
+          <ListItem
+            key={`key-todo-${item.id}`}
+            item={item}
+            handleActionClicked={handleDoneClicked}
+            handleNewDescription={handleNewDescription}
+          />
         )}
       </ListGroup>
       {doneItems?.length > 0 ? <h1 className="done-label">Done</h1> : null}
       <ListGroup className="done-list width-90">
         {doneItems.slice(0, numDoneVisible).map((item: TodoItem) =>
-          <ListItem item={item} handleActionClicked={handleRedoClicked} handleNewDescription={handleNewDescription}/>
+          <ListItem
+            key={`key-done-${item.id}`}
+            item={item}
+            handleActionClicked={handleRedoClicked}
+            handleNewDescription={handleNewDescription}
+          />
         )}
       </ListGroup>
     </div>

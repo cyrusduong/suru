@@ -60,7 +60,7 @@ const ListItem = (props: ListItemProps) => {
           onClick={() => setIsEditing(true)}
           className={`${isDone ? 'done': 'todo'}-desc`}
         >
-          {description}
+          {value}
         </p>
       }
         <Button
