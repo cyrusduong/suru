@@ -67,6 +67,7 @@
 
 .no-button-styles {
   border: none;
+  padding: 0;
   background: white;
   text-align: left;
 }
