@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import moment from 'moment';
 
 import Button from 'react-bootstrap/Button';
@@ -27,6 +27,8 @@ const ListItem = (props: ListItemProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [value, setValue] = useState<string>(description);
 
+  const inputRef = useRef<any>(null);
+
   const handleValueChanged = (value: string) => {
     setValue(value);
   }
@@ -41,11 +43,21 @@ const ListItem = (props: ListItemProps) => {
     }
   }, [id, isEditing, handleNewDescription, value, isDone, description])
 
+  /**
+   * Focus or input box once we enter editing mode
+   */
+  useEffect(() => {
+    if (isEditing) {
+      inputRef.current.focus();
+    }
+  }, [isEditing])
+
   return (
     <ListGroupItem key={id} className={isDone ? "redo-item" : "todo-item"} >
       <div className="flex todo-item-primary">
       {isEditing ?
         <FormControl
+          ref={inputRef}
           className="todo-input margin-right-1"
           onChange={(event) => handleValueChanged(event.target.value)}
           onKeyPress={(e: React.KeyboardEvent) => {
@@ -56,12 +68,12 @@ const ListItem = (props: ListItemProps) => {
           value={value}
         />
       :
-        <p
+        <button
           onClick={() => setIsEditing(true)}
-          className={`${isDone ? 'done': 'todo'}-desc`}
+          className={`${isDone ? 'done': 'todo'}-desc no-button-styles`}
         >
           {value}
-        </p>
+        </button>
       }
         <Button
           variant={!isDone ? "outline-primary" : "outline-secondary"}

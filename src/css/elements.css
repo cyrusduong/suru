@@ -13,7 +13,7 @@
   text-align: left;
 }
 
-.redo-item > div > button {
+.redo-item > div > .todo-done-button {
   display: none;
 }
 
@@ -63,4 +63,14 @@
 
 .input-file-import {
   visibility: hidden;
+}
+
+.no-button-styles {
+  border: none;
+  background: white;
+  text-align: left;
+}
+
+.no-input-styles {
+  border: none;
 }
